@@ -1,5 +1,5 @@
 # Development stage
-FROM node:20 as development
+FROM node:25 as development
 
 WORKDIR /usr/src/app
 COPY . .
