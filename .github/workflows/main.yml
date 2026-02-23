@@ -1,0 +1,59 @@
+name: Sync glowingjellyfish-wiki-bot upstream
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # Runs every 6 hours
+  workflow_dispatch:        # Allow manual trigger
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current repo
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Add upstream remote
+        run: |
+          git remote add upstream https://github.com/official-stockfish/stockfish-wiki-bot.git
+          git fetch upstream
+
+      - name: Create sync branch
+        id: sync_branch
+        run: |
+          BRANCH="sync-glowingjellyfish-wiki-bot-$(date +'%Y%m%d%H%M%S')"
+          git checkout -b $BRANCH
+          git merge upstream/master --allow-unrelated-histories -X theirs || true
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet HEAD origin/${{ github.event.repository.default_branch }}; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Push branch
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git push origin ${{ steps.sync_branch.outputs.branch }}
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v8
+        with:
+          branch: ${{ steps.sync_branch.outputs.branch }}
+          base: ${{ github.event.repository.default_branch }}
+          title: "Sync upstream .github"
+          body: |
+            Automated sync from upstream:
+            https://github.com/official-stockfish/stockfish-wiki-bot
+          commit-message: "Sync upstream glowingjellyfish-wiki-bot"
