@@ -1,0 +1,11 @@
+# fly.toml app configuration file generated for stockfish-wiki-bot on 2023-11-19T15:39:53+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "stockfish-wiki-bot"
+primary_region = "ams"
+
+[build]
+
+

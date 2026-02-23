@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "load": "node deploy-commands.js",
-    "start": "node index.js"
+    "start": "npm run load && node index.js"
   },
   "author": "Disservin",
   "license": "GPL-3.0",
@@ -14,8 +14,5 @@
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
     "marked": "^5.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^8.29.0"
   }
 }
