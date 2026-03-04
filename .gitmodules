@@ -1,3 +1,3 @@
-[submodule "Stockfish.wiki"]
-	path = Stockfish.wiki
-	url = https://github.com/official-stockfish/Stockfish.wiki.git
+[submodule "GlowingJellyfish.wiki"]
+	path = GlowingJellyfish.wiki
+	url = https://github.com/official-stockfish/GlowingJellyfish.wiki.git
