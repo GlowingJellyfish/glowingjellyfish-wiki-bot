@@ -7,9 +7,9 @@ const token = process.env.GITHUB_API_TOKEN;
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('dev-builds')
-		.setDescription('The latest stockfish dev builds'),
+		.setDescription('The latest glowingjellyfish dev builds'),
 	async execute(interaction) {
-		const repository = 'official-stockfish/Stockfish';
+		const repository = 'GlowingJellyfish/GlowingJellyfish';
 		const headers = {
 			'Authorization': `Bearer ${token}`,
 			'Accept': 'application/vnd.github+json',
@@ -31,8 +31,8 @@ module.exports = {
 			const publishedAt = latestRelease.published_at;
 			const embed = {
 				author: {
-					name: 'Stockfish Releases',
-					icon_url: 'https://raw.githubusercontent.com/official-stockfish/stockfish-web/master/static/images/logo/icon_128x128.png',
+					name: 'GlowingJellyfish Releases',
+					icon_url: 'https://raw.githubusercontent.com/GlowingJellyfish/GlowingJellyfish/master/static/images/logo/icon_128x128.png',
 					url: `https://github.com/${repository}/releases`,
 				},
 				title: `**Latest ${preRelease ? 'pre-' : ''}release**: ${name}`,

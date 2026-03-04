@@ -3,8 +3,8 @@ const path = require('path');
 const { SlashCommandBuilder } = require('discord.js');
 const marked = require('marked');
 
-// Read the markdown files in the Stockfish-wiki directory
-const wikiDirectory = path.join(__dirname, '..', 'Stockfish.wiki');
+// Read the markdown files in the GlowingJellyfish-wiki directory
+const wikiDirectory = path.join(__dirname, '..', 'GlowingJellyfish.wiki');
 const files = fs.readdirSync(wikiDirectory);
 
 // Create an object to store the subcommands
@@ -18,7 +18,7 @@ const simplifyPageName = (name) => {
 	return name.replace(/\s+/g, '-');
 };
 
-const baseUrl = 'https://official-stockfish.github.io/docs/stockfish-wiki/';
+const baseUrl = 'https://GlowingJellyfish.github.io/docs/GlowingJellyfish-wiki/';
 
 // Parse the markdown files to extract the headings
 files.forEach((file) => {
@@ -88,8 +88,8 @@ module.exports = {
 
 		const embed = {
 			author: {
-				name: 'Stockfish Wiki',
-				icon_url: 'https://raw.githubusercontent.com/official-stockfish/stockfish-web/master/static/images/logo/icon_128x128.png',
+				name: 'GlowingJellyfish Wiki',
+				icon_url: 'https://raw.githubusercontent.com/GlowingJellyfish/GlowingJellyfish/master/static/images/logo/icon_128x128.png',
 				url: baseUrl + 'Home.html',
 			},
 			title: `**${requestedSub.file.replace(/-/g, ' ')}**`,

@@ -12,7 +12,7 @@ module.exports = {
 		),
 	async execute(interaction) {
 		const commitSha = interaction.options.getString('commit-sha');
-		const link = `https://github.com/official-stockfish/Stockfish/commit/${commitSha}`;
+		const link = `https://github.com/GlowingJellyfish/GlowingJellyfish/commit/${commitSha}`;
 		await interaction.reply(link);
 	},
 };
